@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+  <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+  </symbol>
+  <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </symbol>
+</svg>
+
+<div class="container-fluid mb-5">
+  <div class="row mb-5">
+    <div class="col-xl-8 col-lg-10 col-md-10 col-sm-12 mx-auto mt-5">
+      <div class="nga-card">
+        <h1 class="h5 card-header text-center py-2" style="border-radius: 10px;">
+          <i class="fas fa-user-plus me-4"></i><strong>{{TITULO_PAGINA_CREATE}}</strong>
+        </h1>
+        <div class="card-body px-lg-5 pt-4">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            
+            <div class="form-row">
+              <div class="col">
+                <div class="card mb-2">
+                  
+                  <div class="card-body">
+                   
+                     
+                    <div class="alert alert-success d-flex align-items-center" role="alert" *ngIf="msgSucesso">
+                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                      <div>
+                        Operação de {{operacao}} realizada com suceso.
+                      </div>
+                    </div>
+ 
+                    <div class="alert alert-danger d-flex align-items-center" role="alert" *ngIf="msgErro">
+                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                      <div>
+                        {{mensagemErro}}
+                      </div>
+                    </div>
+
+                  <!--INICIO FORMULARIO-->
+                      <div class="container">
+                        <div class="row">
+                          <legend>Associação de pessoa e cliente</legend>
+                          <hr />
+
+                        <!--Realiza busca dos dados pelo CPF-->
+                          <label for="basic-url" class="form-label">Pesquisa de pessoa pelo cpf</label>
+                                <div class="input-group mb-3">
+                                  <span class="input-group-text" id="basic-addon3">CPF</span>
+                                  <input type="text" style="width: 200px;" formControlName="cpf" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['cpf'].errors}" placeholder="Informe o cpf">
+                                  <span class="input-group-text" >                              
+                                      <button style="width: 150px; text-align: left;" type="button" class="btn btn-info" (click)="buscarRegistroByCpf()" title="Realizar consulta da pessoa na base dados pelo CPF.">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                                        </svg>
+                                        Pesquisar
+                                      </button>
+                                  </span>
+                                  <span class="input-group-text" style="width: 600px; text-align: center">    {{pessoa.nome}}     </span>
+                                </div>
+
+                                                            
+                            <div class="spinner-border m-5" role="status"  *ngIf="loaded">
+                              <span class="visually-hidden">Loading...</span>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="container">
+                        <div class="row">
+
+                          <div class="col-sm" *ngIf="exibirDadosPessoa">
+                            <div class="mb-3">
+                              <label>Serviços</label>
+                                <select formControlName="servicosSelecionados" class="form-control" multiple>
+                                      <option *ngFor="let servico of servicos" value="{{servico.id}}" placeholder="Escolha o serviço" >
+                                        {{servico.descricao}}
+                                    </option>                
+                                </select>                               
+                            </div>
+                          </div>
+
+                          <div class="col-sm" *ngIf="exibirDadosPessoa">
+                            <div class="mb-3">
+                              <label>Produtos</label>
+                                <select formControlName="produtosSelecionados" class="form-control" multiple>
+                                  <option *ngFor="let produto of produtos" value="{{produto.id}}" placeholder="Escolha o produto">
+                                    {{produto.descricao}}
+                                  </option>
+                              </select> 
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+
+  
+
+              </div>
+          </div>
+      </div>
+</div>
+<br />
+
+
+ <!--FIM FORMULARIO *ngIf="exibirDadosPessoa" -->    
+        <div class="card mb-2">
+                  <div class="card-body regra-btn-alinha">
+
+                        <button type="button" class="btn btn-warning me-2" routerLink="/list-cliente">
+                          <span aria-hidden="true">&times;</span>
+                            Cancelar
+                        </button>
+                    
+                        <button type="button" class="btn btn-warning me-2" (click)="limpar()" *ngIf="exibirDadosPessoa">
+                          <i class="fa fa-eraser" aria-hidden="true"></i>
+                            Limpar
+                        </button>
+                                  
+                        <button type="submit" class="btn btn-success me-2" *ngIf="exibirDadosPessoa">
+                          <i class="fas fa-user-plus"></i>  
+                            Incluir
+                        </button>
+                  </div>
+        </div>
+         <!--FIM FORMULARIO-->  
+        <br />
+      </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<!--
+  <div class="container">
+  <div class="row">
+    <div class="col-sm">
+      Uma de três colunas
+    </div>
+    <div class="col-sm">
+      Uma de três colunas
+    </div>
+    <div class="col-sm">
+      Uma de três colunas
+    </div>
+  </div>
+</div> 
+-->

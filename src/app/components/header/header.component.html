@@ -1,0 +1,282 @@
+<header class="navbar navbar-expand-lg navbar-dark fixed-top nga-navbar">
+  <nav class="container" aria-label="Main navigation">
+    <!--
+    <a href="https://github.com/ganatan/angular-app" class="d-none d-sm-block">
+      <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000;"
+        src="https://api.ganatan.com/articles/img/forkme.png" alt="Fork me on GitHub"
+        data-canonical-src="https://api.ganatan.com/articles/img/forkme.png" />
+    </a>
+    -->
+
+    <a routerLink="/" class="navbar-brand" alt="Accueil">
+      <!-- <img
+        src="./assets/params/images/logo/ganatan-logo.png"
+        srcset="
+          ./assets/params/images/logo/ganatan-logo.png,
+          ./assets/params/images/logo/ganatan-logo@2x.png 2x
+        "
+        width="25"
+        height="25"
+        alt="Ganatan Logo"
+      /> -->
+      <i class="fa fa-home" aria-hidden="true"></i>
+      <span class="nga-logo mx-1" aria-label="FFF">jgbtecnologia</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- INICIO MODULO DE  CADASTROS-->
+    <div class="btn-group">
+      <a
+        class="dropdown-toggle navbar-brand"
+        data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <span class="nga-menu-cadastros mx-1"> Módulo de Cadastros</span>
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-end">
+        <!-- <li>          
+          <button
+            [routerLink]="['/list-post']"
+            class="dropdown-item"
+            type="button">
+          <i class="fas fa-user-plus"></i> 
+            Post           
+          </button>
+        </li> -->
+
+        <li>          
+          <button
+            [routerLink]="['/list-pessoa']"
+            class="dropdown-item"
+            type="button">
+          <i class="fas fa-user-plus"></i> 
+            Pessoa
+          </button>
+        </li>
+
+        <li>
+          <button
+            [routerLink]="['/list-cliente']"
+            class="dropdown-item"
+            type="button"
+          >
+          <i class="fa-solid fa-id-card-clip"></i>
+            Cliente
+          </button>
+        </li>
+
+        <li>
+          <button
+            [routerLink]="['/list-fornecedor']"
+            class="dropdown-item"
+            type="button"
+          >
+          <i class="fa-solid fa-chalkboard-user"></i>
+            Fornecedor
+          </button>
+        </li>
+        
+        <li>          
+          <button
+            [routerLink]="['/list-produto']"
+            class="dropdown-item"
+            type="button">
+          <i class="fa-solid fa-check-to-slot"></i> 
+            Produto           
+          </button>
+        </li>
+
+        <li>          
+          <button
+            [routerLink]="['/list-servico']"
+            class="dropdown-item"
+            type="button">
+          <i class="fa-solid fa-tent-arrow-down-to-line"></i>
+            Serviço           
+          </button>
+        </li>
+
+        <li>
+          <button
+            [routerLink]="['/list-patrimonio']"
+            class="dropdown-item"
+            type="button"
+          >
+          <i class="fa-solid fa-landmark-dome"></i>
+            Patrimônio
+          </button>
+        </li>
+
+        <li>          
+          <button
+            [routerLink]="['/list-funcao']"
+            class="dropdown-item"
+            type="button">
+          <i class="fa-solid fa-handshake"></i> 
+            Função profissional           
+          </button>
+        </li>
+
+        <li>          
+          <button
+            [routerLink]="['/list-perfil']"
+            class="dropdown-item"
+            type="button">
+          <i class="fa-solid fa-dove"></i> 
+            Perfil de usuário    
+          </button>
+        </li>
+
+
+
+
+
+
+
+  
+      </ul>
+    </div>
+
+    <!-- INICIO MODULO DE  AGENDAMENTO-->
+    <div class="btn-group">
+      <a
+        class="dropdown-toggle navbar-brand"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <span class="nga-menu-cadastros mx-1">Módulo de Agendamento</span>
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <button
+            [routerLink]="['/cadastro-pessoa']"
+            class="dropdown-item"
+            type="button"
+          >
+            Realizar Agendamento de evento
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- INICIO MODULO DE  SERVICOS-->
+    <div class="btn-group">
+      <a
+        class="dropdown-toggle navbar-brand"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <span class="nga-menu-cadastros mx-1">Módulo de Serviços</span>
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <button
+            [routerLink]="['/associar-servico']"
+            class="dropdown-item"
+            type="button">
+            Realizar Associação de Serviço
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- INICIO MODULO DE  PRODUTOS-->
+    <div class="btn-group">
+      <a
+        class="dropdown-toggle navbar-brand"
+        data-bs-toggle="dropdown"
+        aria-expanded="false" >
+        <span class="nga-menu-cadastros mx-1">Módulo de Produtos</span>
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <button
+            [routerLink]="['/associar-produto']"
+            class="dropdown-item"
+            type="button">
+            Realizar Associação de Produto
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- INICIO MODULO DE  RELATORIOS-->
+    <div class="btn-group">
+      <a
+        class="dropdown-toggle navbar-brand"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <span class="nga-menu-cadastros mx-1">Módulo de Relatórios</span>
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <button
+            [routerLink]="['/relatorios']"
+            class="dropdown-item"
+            type="button"
+          >
+            Relatórios
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <!-- <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link nga-nav-link" aria-current="page" routerLink="/">
+            <i class="fab fa-angular me-1"></i>Cadastros</a>
+        </li>
+      </ul> -->
+      <ul class="navbar-nav me-auto"></ul>
+      <!--
+        ul class="navbar-nav me-auto">
+         <li class="nav-item">
+          <a class="nav-link nga-nav-link" aria-current="page" routerLink="/about">
+            <i class="far fa-question-circle me-1"></i>About</a>
+        </li>  -->
+      <!-- <li class="nav-item">
+          <a class="nav-link nga-nav-link" aria-current="page" routerLink="/contact">
+            <i class="fas fa-envelope me-1"></i>Contato</a>
+        </li> -->
+      <!-- <li class="nav-item">
+          <a class="nav-link nga-nav-link" aria-current="page" href="https://github.com/ganatan">
+            <i class="fab fa-github me-1"></i>Github </a>
+        </li>   
+      </ul>-->
+
+      <form class="d-flex">
+        <button
+          type="button"
+          class="btn btn-sm nga-btn-navbar me-2"
+          routerLink="/cadastro-usuario"
+        >
+          <i class="fas fa-user-plus me-2"></i>Cadastre-se
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-light me-2"
+          routerLink="/login"
+        >
+          <i class="fas fa-sign-in-alt me-2"></i>Login
+        </button>
+      </form>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,190 @@
+
+
+<div class="container">
+  <br />
+  <br />
+ 
+    <div class="table-responsive-md">
+      <div class="row">
+        <legend>Filtros de fornecedor</legend>
+
+        <div class="card mb-2">
+          <div class="card-body regra-btn-alinha">
+            <div class="container">
+              <div class="row">
+
+                <div class="col-sm">
+                  <div class="mb-3">
+                    <label>Código</label>
+                    <input
+                      type="text"
+                      [(ngModel)]="filtro.codigo"
+                      class="form-control"
+                      placeholder="Filtro: código do fornecedor"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-sm">
+                  <div class="mb-3">
+                    <label>CPF</label>
+                    <input type="text" 
+                    class="form-control"
+                    [(ngModel)]="filtro.cpf" 
+                    placeholder="Filtro: CPF do fornecedor" />
+                  </div>
+                </div>
+
+                <div class="col-sm">
+                  <div class="mb-3">
+                    <label>Nome</label>
+                    <input type="text" 
+                    class="form-control"
+                    [(ngModel)]="filtro.nome" 
+                    placeholder="Filtro: nome do fornecedor" />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          
+              <div class="card-body regra-btn-alinha" style="text-align: right;">
+
+                    <button type="button" class="btn btn-warning me-2" (click)="limpar()" title="Limpar dados do filtro">
+                      <i class="fa-solid fa-eraser"></i>
+                        Limpar
+                    </button>
+                
+                    <button type="button" class="btn btn-info" (click)="findFilter()" title="Realizar consulta na base dados.">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                      </svg>
+                      Pesquisar
+                    </button>
+
+              </div>    
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+
+  <div class="spinner-border m-5" role="status"  *ngIf="loaded">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+ 
+    <br />
+    <div class="table-responsive-md">
+      <div class="row">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-sm" *ngIf="possuiRegistros">
+              <legend>Resultado da busca</legend>
+            </div>
+            <div class="col-sm" style="text-align: right">
+              <button
+              type="submit"
+              class="btn btn-success me-2"
+              routerLink="/create-fornecedor/" >
+              <i class="fa-solid fa-user-plus"></i>
+              Novo
+            </button>
+            </div>
+          </div>
+        </div> 
+
+      <br />
+      <br />
+ 
+<div class="card mb-2" *ngIf="possuiRegistros">
+  <div class="card-body regra-btn-alinha">
+
+    <table class="table table-bordered table table-striped">
+      <thead>
+        <tr class="table-primary">
+          <th style="text-align: center">Código</th>          
+          <th style="text-align: center">CPF</th>    
+          <th style="text-align: center">Nome</th>
+          <th style="text-align: center; width: 200px">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let item of fornecedors
+              | paginate : { itemsPerPage: 10, currentPage: paginaAtual };
+            let i = index ">
+          <td style="text-align: center">{{ item.id }}</td>
+          <td style="text-align: center">{{ item.nome }}</td>
+          <td style="text-align: center">{{ item.cpf }}</td>
+          <td style="text-align: center">
+            <a
+              href="#"
+              [routerLink]="['/fornecedor/', item.id, 'view']"
+              class="btn btn-info" title="Visualizar dados do fornecedor">
+              <i class="fa-solid fa-address-card"></i></a>
+            
+              <a href="#" title="Editar dados do fornecedor"
+              [routerLink]="['/fornecedor/', item.id, 'edit']"
+              class="btn btn-primary"
+              ><i class="fa-solid fa-user-pen"></i ></a>
+            
+            <button 
+              (click)="abrirModal(item)"
+              type="button"
+              title="Deletar fornecedor da base de dados"
+              class="btn btn-danger">
+              <i class="fa-solid fa-box-archive"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <pagination-controls
+      style="text-align: center; width: 200px"
+      (pageChange)="paginaAtual = $event"
+      previousLabel="Anterior"
+      nextLabel="Próximo">
+  </pagination-controls>
+
+ </div>
+</div>
+</div>
+</div>
+
+  <div class="row" *ngIf="!possuiRegistros">
+    <div class="col-sm" style="text-align: center;">
+      <br /><br /><br />
+       Nenhum resultado encontrado para os filtros informados.
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </div>
+
+  <div class="row" *ngIf="possuiRegistros">
+   <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </div>
+
+ </div>
+
+<!-- INICIO -->
+<div class="modal fade" id="modalExclusao" tabindex="-1" aria-labelledby="modalExclusaoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalExclusaoLabel">Confirmação de exclusão </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="modal-body">
+          Deseja realmente excluir este registro de código {{idModal }} ?
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" title="Cancelar exclusão">Não</button>
+        <button type="button" class="btn btn-primary" (click)="delete(idModal)" data-bs-dismiss="modal" title="Confirmar exclusão">Sim</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIM -->

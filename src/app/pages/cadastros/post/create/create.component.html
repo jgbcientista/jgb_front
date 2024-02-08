@@ -1,0 +1,106 @@
+ 
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()"> 
+    
+    <div class="row">
+      <legend>Ficha de {{operacao}}</legend>
+    <hr />
+</div>
+
+    <!--INICIO - FORMULARIO-->
+    <div class="card mb-2">
+        <div class="card-body regra-btn-alinha">
+                        
+            <div class="col-sm">
+                <div class="mb-3">
+                  <label>Título</label>
+                    <input type="text" formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['title'].errors}" placeholder="Campo obrigatório">
+                    <div *ngIf="submitted && f['title'].errors?.['required']" class="invalid-feedback">
+                      <div *ngIf="f['title'].errors?.['required']">Por favor, informe o título.</div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="mb-3">
+                  <label>Body</label>
+                    <input type="text" formControlName="body" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['body'].errors}" placeholder="Campo obrigatório">
+                    <div *ngIf="submitted && f['body'].errors" class="invalid-feedback">
+                      <div *ngIf="f['body'].errors?.['required']">Por favor, informe o body.</div>
+                    </div>
+                </div>
+              </div>
+    
+        
+        </div>
+    </div>
+    <!--FIM - FORMULARIO-->
+
+ 
+
+
+    <!--INICIO - BOTOES-->
+    <div class="card mb-2">
+        <div class="card-body regra-btn-alinha">
+
+               
+            <button type="button" class="btn btn-warning me-2" routerLink="/list-post">
+                <i class="fa-solid fa-house-user"></i>
+                  Cancelar
+            </button>
+
+              <button type="button" class="btn btn-warning me-2" (click)="limpar()">
+                <i class="fa fa-eraser" aria-hidden="true"></i>
+                  Limpar
+                </button>
+ 
+                <button class="btn btn-primary" type="submit" >
+                    <i class="fas fa-user-plus"></i>  
+                    Incluir
+                </button>
+                        
+              <button type="button" class="btn btn-primary me-2" (click)="alterar()" [disabled]="!form.valid" *ngIf="false">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                    Alterar
+              </button>
+    
+        
+        </div>
+    </div>
+  
+
+
+</form>
+</div>
+
+
+
+
+
+ 
+  
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<br />
+<br />
+<br />
+<br />
+
+

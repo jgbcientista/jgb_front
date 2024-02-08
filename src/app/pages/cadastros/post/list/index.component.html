@@ -1,0 +1,148 @@
+<div class="container">
+  <br />
+  <br />
+
+  <div class="table-responsive-md">
+    <div class="row">
+      <legend>Filtros de post</legend>
+    
+      <div class="card mb-2">
+        <div class="card-body regra-btn-alinha">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <div class="mb-3">
+                  <label>ID</label>
+                  <input type="text" class="form-control" placeholder="Filtro ID" />
+                </div>
+              </div>
+    
+              <div class="col-sm">
+                <div class="mb-3">
+                  <label>Body</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Filtro Body"
+                  />
+                </div>
+              </div>
+    
+              <div class="col-sm">
+                <div class="mb-3">
+                  <label>Assunto</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Filtro Assunto"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div style="text-align: right;">
+          <button type="submit" class="btn btn-warning" (click)="findFilter()">
+            Pesquisar
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+    <br />
+    <div class="table-responsive-md">
+      <div class="row">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <legend>Resultado da busca</legend>
+            </div>
+            <div class="col-sm" style="text-align: right">
+              <button
+              type="submit"
+              class="btn btn-success me-2"
+              routerLink="/create-post/" >
+              <i class="fas fa-user-plus"></i>
+              Nova
+            </button>
+            </div>
+          </div>
+        </div> 
+
+      <br />
+      <br />
+ 
+<div class="card mb-2" *ngIf="possuiRegistros">
+  <div class="card-body regra-btn-alinha">
+
+    <table class="table table-bordered table table-striped">
+      <thead>
+        <tr class="table-primary">
+          <th>Código</th>
+          <th>Título</th>
+          <th>Descrição</th>
+          <th style="text-align: center; width: 200px">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let post of posts
+              | paginate : { itemsPerPage: 10, currentPage: paginaAtual };
+            let i = index ">
+          <td>{{ post.id }}</td>
+          <td>{{ post.title }}</td>
+          <td>{{ post.body }}</td>
+          <td style="text-align: center">
+            <a
+              href="#"
+              [routerLink]="['/post/', post.id, 'view']"
+              class="btn btn-info"
+              ><i class="fa-solid fa-address-card"></i
+            ></a>
+            <a
+              href="#"
+              [routerLink]="['/post/', post.id, 'edit']"
+              class="btn btn-primary"
+              ><i class="fa-solid fa-user-pen"></i
+            ></a>
+            <button
+              type="button"
+              (click)="deletePost(post.id)"
+              class="btn btn-danger"
+            >
+              <i class="fa-solid fa-user-xmark"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <pagination-controls
+      style="text-align: center; width: 200px"
+      (pageChange)="paginaAtual = $event"
+      previousLabel="Anterior"
+      nextLabel="Próximo">
+  </pagination-controls>
+
+ </div>
+</div>
+</div>
+</div>
+
+ 
+ 
+  <div class="row" *ngIf="!possuiRegistros">
+    <div class="col-sm" style="text-align: center;">
+      <br /><br /><br />
+       Nenhum resultado encontrado para os filtros informados.
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </div>
+ 
+
+</div>
